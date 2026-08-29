@@ -1,0 +1,14 @@
+﻿Test,Result,Details
+Required files,PASS,All required files present
+Application syntax,PASS,app.py compiled successfully
+Model feature count,PASS,34
+Historical reference date,PASS,2024-12-31
+Current forecast safety flag,PASS,False
+Traditional pricing,PASS,31.7489
+Approach 1 reference pricing,PASS,33.2044
+Empirical error band,PASS,23.9628 to 42.4459
+50% volatility stress,PASS,47.40939484329729
+2% rate stress,PASS,32.03167004934916
+Deployment dependencies,PASS,scikit-learn and joblib included
+Week8 README,PASS,Required README sections present
+Approach 2 excluded,PASS,No Approach 2 model is loaded or delivered

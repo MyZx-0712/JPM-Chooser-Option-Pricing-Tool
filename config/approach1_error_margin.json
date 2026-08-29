@@ -1,0 +1,15 @@
+{
+  "model": "week5_incumbent_ridge_log_volatility",
+  "basis": "One-time test residuals relative to the internal analytical BSM reference",
+  "number_of_test_observations": 250,
+  "mean_error": -0.5216820363826369,
+  "mae": 2.431741089240908,
+  "rmse": 3.52839448177985,
+  "r2": 0.9714432460765392,
+  "median_absolute_error": 1.607599800897603,
+  "maximum_absolute_error": 12.761106851787318,
+  "empirical_absolute_error_90": 5.268916084968186,
+  "empirical_absolute_error_95": 9.2415622529765,
+  "display_method": "ML price plus/minus the empirical 95th percentile of absolute test errors",
+  "limitation": "This is an empirical historical error band against an analytical benchmark, not a market confidence interval."
+}

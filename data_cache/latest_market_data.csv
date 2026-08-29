@@ -1,0 +1,2 @@
+market_date,jpm_close,vix_level,dgs1_rate_pct,retrieved_at,data_status,data_source
+2024-12-31,239.7100067138672,17.35,4.16,2026-08-21T12:24:06.965030+00:00,historical_cache_seed,Week 2 model-ready dataset

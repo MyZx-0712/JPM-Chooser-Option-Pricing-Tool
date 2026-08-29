@@ -1,0 +1,106 @@
+{
+    "project": "Week 6 Model Training, Tuning and Comparison",
+    "runtime": {
+        "python": "3.10.9",
+        "numpy": "1.23.5",
+        "pandas": "1.5.3",
+        "scikit_learn": "1.2.1",
+        "shap": "0.44.1"
+    },
+    "evaluation_protocol": {
+        "forecast_horizon_days": 20,
+        "cv_method": "TimeSeriesSplit",
+        "cv_splits": 5,
+        "cv_gap_days": 20,
+        "primary_metric": "MAE",
+        "test_opened_once": true,
+        "test_open_timestamp": "2026-08-17T18:09:44.679543",
+        "test_rows": 250
+    },
+    "approach1": {
+        "final_model": "week5_incumbent_ridge_log_volatility",
+        "parameters": {
+            "ridge__alpha": 10000.0
+        },
+        "feature_columns": [
+            "jpm_daily_return",
+            "jpm_rolling_vol_5d",
+            "jpm_rolling_vol_20d",
+            "jpm_rolling_vol_60d",
+            "jpm_return_5d_sum",
+            "jpm_return_20d_sum",
+            "vix_level",
+            "vix_change",
+            "vix_return",
+            "vix_rolling_mean_20d",
+            "vix_jpm_corr_20d",
+            "dgs1_rate",
+            "dgs1_rate_change",
+            "dgs1_rate_momentum_20d",
+            "jpm_log_volume",
+            "jpm_dividend_amount",
+            "dividend_event_flag",
+            "dividend_growth_yoy",
+            "sentiment_score_0_1",
+            "market_stress_score_0_1",
+            "jpm_return_outlier_iqr",
+            "vix_level_outlier_iqr",
+            "jpm_daily_return_lag_1",
+            "jpm_daily_return_lag_5",
+            "jpm_daily_return_lag_20",
+            "jpm_rolling_vol_20d_lag_1",
+            "jpm_rolling_vol_20d_lag_5",
+            "jpm_rolling_vol_20d_lag_20",
+            "vix_level_lag_1",
+            "vix_level_lag_5",
+            "vix_level_lag_20",
+            "dgs1_rate_lag_1",
+            "dgs1_rate_lag_5",
+            "dgs1_rate_lag_20"
+        ],
+        "target": "target_future_vol_20d",
+        "test_volatility_mae": 0.06659388849816171,
+        "test_volatility_rmse": 0.08741189072476145,
+        "test_volatility_r2": 0.023370979213940934,
+        "test_pricing_mae": 2.431741089240908,
+        "test_pricing_rmse": 3.52839448177985,
+        "pricing_mae_improvement_pct": 11.083733374069052
+    },
+    "approach2": {
+        "final_model": "week5_incumbent_hist_gradient_direct_price",
+        "parameters": {
+            "learning_rate": 0.05,
+            "max_iter": 500,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 10,
+            "l2_regularization": 0.1
+        },
+        "feature_columns": [
+            "stock_price",
+            "risk_free_rate_decimal",
+            "pricing_volatility",
+            "strike_price",
+            "choice_time",
+            "maturity_time",
+            "log_moneyness",
+            "remaining_time",
+            "choice_fraction",
+            "volatility_sqrt_maturity",
+            "discounted_stock",
+            "discounted_strike"
+        ],
+        "target": "target_chooser_price",
+        "validation_mae": 0.9374934476146747,
+        "test_mae": 24.923030168332357,
+        "test_rmse": 29.586161562990963,
+        "test_r2": -0.8658576977431864,
+        "test_rows_above_training_stock_max_pct": 87.6,
+        "deployment_status": "not recommended without extrapolation control"
+    },
+    "important_limitations": [
+        "No actual chooser-option transaction-price target is available.",
+        "Approach 2 learns an analytical BSM reference rather than market prices.",
+        "Approach 2 fails under stock-price range extrapolation.",
+        "SHAP importance describes model behavior and is not causal evidence."
+    ]
+}
